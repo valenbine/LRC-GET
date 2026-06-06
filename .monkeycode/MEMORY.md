@@ -57,3 +57,12 @@ Agent 在任务执行过程中发现的条目应遵循以下格式：
 - Instructions:
   - GitHub 远程仓库为 `https://github.com/valenbine/LRC-GET.git`。
   - 当前默认推送分支为 `master`，跟踪 `origin/master`。
+
+[README 语言维护方式]
+- Date: 2026-06-06
+- Context: 用户要求 README 中英文分开并互相跳转
+- Category: 工作流协作
+- Instructions:
+  - README 中文文档维护在 `README.md`。
+  - README 英文文档维护在 `README.en.md`。
+  - 两个 README 顶部需要保留语言切换链接，实现中英文互相跳转。
