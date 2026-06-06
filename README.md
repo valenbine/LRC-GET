@@ -170,9 +170,9 @@ const lrc = toLrc(lines)
 
 本项目使用自有 Node.js 实现，同时参考了下列公开开源项目和公开服务 API。
 
-- `tomakino/qrckit`：参考 QQ 音乐 API 型 QRC payload 的解密思路与 Kotlin 实现。
-- `WXRIW/QQMusicDecoder`：参考 QQ 音乐自定义 DES/3DES 兼容位级解码实现。
-- `magic-akari/lrc-maker`：参考手动 LRC 时间戳标注的交互模型。
+- [`tomakino/qrckit`](https://github.com/tomakino/qrckit)：参考 QQ 音乐 API 型 QRC payload 的处理思路、密文输入形态和 Kotlin 解码流程说明。本项目使用 Node.js 重新实现相关流程。
+- [`WXRIW/QQMusicDecoder`](https://github.com/WXRIW/QQMusicDecoder)：参考 QQ 音乐自定义 DES/3DES 兼容位级解码技术。本项目将核心位运算流程移植为 `src/des-helper.js`。
+- [`magic-akari/lrc-maker`](https://github.com/magic-akari/lrc-maker)：借鉴手动 LRC 时间戳标注的交互模型，包括逐行标注、快捷键控制和时间轴校验思路。本项目未引入其 React/Vite/wavesurfer 技术栈。
 - QQ 音乐公开 Web 接口：歌词候选搜索与歌词拉取。
 - 网易云音乐公开 Web 接口：歌词搜索与 LRC 拉取。
 - LRCLIB 公开 API：同步歌词与纯文本歌词查询。

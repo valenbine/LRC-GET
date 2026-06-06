@@ -66,3 +66,12 @@ Agent 在任务执行过程中发现的条目应遵循以下格式：
   - README 中文文档维护在 `README.md`。
   - README 英文文档维护在 `README.en.md`。
   - 两个 README 顶部需要保留语言切换链接，实现中英文互相跳转。
+
+[项目作者与仓库信息]
+- Date: 2026-06-06
+- Context: 用户要求在前端展示作者联系方式
+- Category: 工作流协作
+- Instructions:
+  - 项目作者展示为 `猫仙森MR CAT`。
+  - 联系邮箱展示为 `valenbine@163.com`。
+  - GitHub 仓库链接展示为 `https://github.com/valenbine/LRC-GET`。

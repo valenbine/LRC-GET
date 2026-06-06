@@ -170,9 +170,9 @@ Important fields:
 
 This project uses its own Node.js implementation, while referencing public open-source work and public service APIs listed below.
 
-- `tomakino/qrckit`: QRC decrypting idea and Kotlin reference implementation for QQ Music API-style QRC payloads.
-- `WXRIW/QQMusicDecoder`: QQ Music custom DES/3DES-compatible bit-level decoder reference.
-- `magic-akari/lrc-maker`: interaction reference for manual LRC timestamp marking workflows.
+- [`tomakino/qrckit`](https://github.com/tomakino/qrckit): referenced the QQ Music API-style QRC payload handling idea, encrypted input shape, and Kotlin decoding flow. This project reimplements the related flow in Node.js.
+- [`WXRIW/QQMusicDecoder`](https://github.com/WXRIW/QQMusicDecoder): referenced the QQ Music custom DES/3DES-compatible bit-level decoding technique. This project ports the core bit operation flow into `src/des-helper.js`.
+- [`magic-akari/lrc-maker`](https://github.com/magic-akari/lrc-maker): referenced the manual LRC timestamp marking interaction model, including line-by-line marking, keyboard controls, and timeline validation ideas. This project does not import its React/Vite/wavesurfer stack.
 - QQ Music public web endpoints: lyric candidate search and lyric fetching.
 - NetEase Cloud Music public web endpoints: lyric search and LRC fetching.
 - LRCLIB public API: synced and plain lyric lookup.
