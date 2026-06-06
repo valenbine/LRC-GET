@@ -1,0 +1,24 @@
+{
+  "name": "lrc-get",
+  "version": "0.1.0",
+  "description": "Get online lyrics and convert QQ Music QRC lyrics to standard LRC files.",
+  "type": "module",
+  "bin": {
+    "lrc-get": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "node src/cli.js --help",
+    "web": "node src/server.js"
+  },
+  "keywords": [
+    "qrc",
+    "lrc",
+    "lyrics",
+    "qqmusic"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,131 @@
+<!doctype html>
+    <html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LRC-GET | 词探</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">在线歌词转换器</p>
+          <h1><span>LRC-GET</span><small>词探</small></h1>
+          <p class="lede">上传 QQ 音乐 QRC 歌词文件或搜索在线候选，直接转换为 LRC；音频文件只用于本地播放预览。</p>
+        </div>
+        <div class="hero-art" id="heroArt" aria-hidden="true">
+          <span class="album-tile tile-a"></span>
+          <span class="album-tile tile-b"></span>
+          <span class="album-tile tile-c"></span>
+          <span class="album-tile tile-d"></span>
+          <span class="hero-orbit"></span>
+        </div>
+        <div class="status-card">
+          <span id="statusLabel">准备就绪</span>
+          <strong id="lineCount">0 行</strong>
+        </div>
+      </section>
+
+      <section class="workspace-grid">
+        <section class="panel upload-panel">
+          <h2>源文件</h2>
+          <label class="file-drop">
+            <span>音频文件（可选，仅用于预览播放）</span>
+            <input id="audioInput" type="file" accept="audio/*">
+          </label>
+          <label class="file-drop">
+            <span>QRC 歌词文件（可选，可直接选择在线候选转换）</span>
+            <input id="qrcInput" type="file" accept=".qrc,.xml,.txt,text/plain">
+          </label>
+
+          <div class="options-row">
+            <label>
+              <input id="includeTranslation" type="checkbox" checked>
+              包含翻译歌词
+            </label>
+          </div>
+
+          <label class="field-label" for="searchTitle">歌名</label>
+          <input id="searchTitle" class="text-input" type="text" placeholder="示例：晴天">
+          <label class="field-label" for="searchArtist">歌手</label>
+          <input id="searchArtist" class="text-input" type="text" placeholder="示例：周杰伦">
+          <label class="field-label" for="lyricProvider">歌词来源</label>
+          <select id="lyricProvider" class="text-input">
+            <option value="auto">自动选择</option>
+            <option value="qqmusic">QQ 音乐</option>
+            <option value="netease">网易云音乐</option>
+            <option value="lrclib">LRCLIB</option>
+          </select>
+          <button id="searchButton" class="secondary-button" type="button">搜索歌词候选</button>
+          <div id="candidateList" class="candidate-list" aria-live="polite"></div>
+
+          <button id="convertButton" type="button">转换为 LRC</button>
+        </section>
+
+        <section class="panel player-panel">
+          <div class="record-art">
+            <div class="disc" id="disc"></div>
+          </div>
+          <div class="track-meta">
+            <p id="trackName">未选择音频（不影响转换）</p>
+            <span id="trackTime">00:00 / 00:00</span>
+          </div>
+          <audio id="audio" controls></audio>
+          <div class="lyrics-toolbar">
+            <span id="lyricsMode">歌词预览</span>
+            <label class="follow-toggle">
+              <input id="followLyrics" type="checkbox" checked>
+              跟随歌词
+            </label>
+          </div>
+          <div class="lyrics" id="lyrics" aria-live="polite">
+            <p class="empty-state">转换后的歌词会显示在这里。</p>
+          </div>
+        </section>
+      </section>
+
+      <section class="panel maker-panel">
+        <div class="maker-head">
+          <div>
+            <h2>歌词时间戳标注</h2>
+            <p>获取不到 LRC 歌词时，可以在此模块手动制作，粘贴/载入歌词，上传并播放音频，给歌词逐行标注时间戳。</p>
+          </div>
+          <button id="loadMakerTextButton" class="secondary-button compact-button" type="button">载入当前歌词</button>
+        </div>
+        <textarea id="makerTextInput" spellcheck="false" placeholder="在这里粘贴纯文本歌词，每行一句。"></textarea>
+        <div class="maker-actions">
+          <button id="prepareMakerButton" class="secondary-button" type="button">开始标注时间戳</button>
+          <button id="stampMakerButton" type="button">给当前行打点</button>
+          <button id="removeStampButton" class="secondary-button" type="button">删除当前时间</button>
+        </div>
+        <div class="maker-help">快捷键：Enter 开始/暂停/继续标注，播放时空格标注时间戳，↑/↓ 选行，←/→ 跳 5 秒，Delete 删除时间，+/- 微调 0.1 秒。</div>
+        <div id="makerLineList" class="maker-line-list" aria-live="polite">
+          <p class="empty-state">开始后会在这里显示逐行歌词。</p>
+        </div>
+      </section>
+
+      <section class="panel output-panel">
+        <div class="output-head">
+          <h2>LRC 输出</h2>
+          <button id="downloadButton" type="button" disabled>下载 LRC</button>
+        </div>
+        <textarea id="lrcOutput" readonly spellcheck="false"></textarea>
+      </section>
+
+      <section class="mini-player" id="miniPlayer" aria-label="底部播放器">
+        <button id="miniToggleButton" class="mini-toggle" type="button" aria-label="静音或恢复音量"><span>♪</span></button>
+        <div class="mini-player-main">
+          <button id="miniPlayButton" class="mini-play" type="button" aria-label="播放或暂停"></button>
+          <div class="mini-meta">
+            <strong id="miniTrackName">未选择音频</strong>
+            <span id="miniTrackTime">00:00 / 00:00</span>
+          </div>
+          <input id="miniSeek" class="mini-seek" type="range" min="0" max="1000" value="0" aria-label="播放进度">
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
