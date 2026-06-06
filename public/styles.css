@@ -147,6 +147,131 @@ textarea {
   box-shadow: 0 24px 55px rgba(0, 0, 0, 0.42);
 }
 
+.music-note {
+  position: absolute;
+  z-index: 2;
+  width: 18px;
+  height: 54px;
+  border-right: 4px solid rgba(34, 197, 94, 0.88);
+  border-top: 4px solid rgba(34, 197, 94, 0.88);
+  border-radius: 2px 12px 0 0;
+  filter: drop-shadow(0 0 14px rgba(34, 197, 94, 0.32));
+  transform: rotate(12deg);
+}
+
+.music-note::before,
+.music-note::after {
+  position: absolute;
+  content: "";
+}
+
+.music-note::before {
+  right: -4px;
+  bottom: -2px;
+  width: 22px;
+  height: 15px;
+  border: 4px solid rgba(34, 197, 94, 0.88);
+  border-radius: 50%;
+  transform: rotate(-18deg);
+}
+
+.music-note::after {
+  top: 4px;
+  right: -22px;
+  width: 22px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.88);
+}
+
+.note-one {
+  top: 24px;
+  left: 22px;
+}
+
+.note-two {
+  right: 26px;
+  bottom: 34px;
+  width: 14px;
+  height: 42px;
+  opacity: 0.72;
+  transform: rotate(-16deg) scale(0.84);
+}
+
+.sound-wave {
+  position: absolute;
+  z-index: 2;
+  width: 72px;
+  height: 34px;
+  border: 2px solid rgba(6, 182, 212, 0.72);
+  border-color: rgba(6, 182, 212, 0.72) transparent transparent transparent;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 18px rgba(6, 182, 212, 0.26));
+}
+
+.wave-one {
+  right: 18px;
+  top: 26px;
+  transform: rotate(24deg);
+}
+
+.wave-two {
+  left: 64px;
+  bottom: 12px;
+  opacity: 0.55;
+  transform: rotate(-18deg) scale(0.82);
+}
+
+.equalizer-bars {
+  position: absolute;
+  left: 42px;
+  top: 112px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: end;
+  gap: 5px;
+  height: 42px;
+  padding: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 12px 28px rgba(0, 0, 0, 0.24);
+}
+
+.equalizer-bars i {
+  display: block;
+  width: 5px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #22c55e, #06b6d4);
+}
+
+.equalizer-bars i:nth-child(1) { height: 16px; }
+.equalizer-bars i:nth-child(2) { height: 29px; }
+.equalizer-bars i:nth-child(3) { height: 22px; }
+.equalizer-bars i:nth-child(4) { height: 34px; }
+
+.beat-dot {
+  position: absolute;
+  z-index: 2;
+  width: 9px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 18px rgba(34, 197, 94, 0.62);
+}
+
+.dot-one {
+  left: 120px;
+  top: 18px;
+}
+
+.dot-two {
+  right: 148px;
+  bottom: 18px;
+  background: #06b6d4;
+  box-shadow: 0 0 18px rgba(6, 182, 212, 0.58);
+}
+
 .eyebrow {
   margin: 0 0 8px;
   color: var(--accent-2);
@@ -249,7 +374,7 @@ h2 {
   align-content: start;
   gap: 7px;
   width: min(150px, calc(100vw - 24px));
-  height: min(300px, calc((100vw - 24px) * 2));
+  height: min(200px, calc((100vw - 24px) * 1.333));
   padding: 18px 16px;
   border-bottom: 0;
   border-radius: 24px 24px 0 0;
@@ -260,7 +385,7 @@ h2 {
 }
 
 .author-card span {
-  color: var(--muted);
+  color: rgba(148, 163, 184, 0.86);
   font-size: 0.72rem;
   font-weight: 800;
 }
@@ -274,12 +399,27 @@ h2 {
   text-decoration: none;
 }
 
+.author-card strong {
+  color: #f8fafc;
+  text-shadow: 0 0 18px rgba(34, 197, 94, 0.18);
+}
+
 .author-card a {
-  color: var(--accent-2);
+  color: #22c55e;
+  font-weight: 800;
+}
+
+.author-card a[href^="mailto:"] {
+  color: rgba(226, 232, 240, 0.92);
+  font-weight: 700;
 }
 
 .author-card a:hover {
   text-decoration: underline;
+}
+
+.author-card a[href^="mailto:"] {
+  font-size: 0.68rem;
 }
 
 .workspace-grid {
@@ -1013,6 +1153,28 @@ audio {
     width: 104px;
   }
 
+  .note-one {
+    left: 18px;
+    top: 18px;
+  }
+
+  .note-two,
+  .wave-two {
+    display: none;
+  }
+
+  .wave-one {
+    right: 6px;
+    top: 16px;
+  }
+
+  .equalizer-bars {
+    left: 26px;
+    top: 98px;
+    transform: scale(0.88);
+    transform-origin: left top;
+  }
+
   .workspace-grid {
     grid-template-columns: 1fr;
   }
@@ -1038,7 +1200,7 @@ audio {
   .author-card {
     left: 10px;
     width: min(130px, calc(100vw - 20px));
-    height: min(260px, calc((100vw - 20px) * 2));
+    height: min(174px, calc((100vw - 20px) * 1.333));
     padding: 14px 12px;
   }
 
