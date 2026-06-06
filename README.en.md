@@ -4,11 +4,13 @@ English | [简体中文](./README.md)
 
 ## About
 
-LRC-GET is a lightweight tool for lyric collection, player lyric compatibility, and local music library management. It decrypts QQ Music QRC lyrics, searches online lyric candidates, and converts the result into standard LRC files.
+LRC-GET is a lightweight tool for lyric collection, player lyric compatibility, and local music library management. It gets lyrics from QQ Music and NetEase Cloud Music, then converts the result into standard LRC files.
 
 The project provides both a web UI and a CLI. The web UI supports local audio preview, online candidate selection, vinyl-style lyric playback visuals, and manual lyric timestamp marking. The CLI is designed for batch conversion, scripts, and local workflows.
 
 LRC-GET currently has no third-party npm runtime dependencies. Its core logic is implemented with Node.js built-in modules, making it easy to deploy, audit, and extend.
+
+It is suitable for users who need to generate LRC lyrics for local music libraries, players, subtitle tools, or music organization workflows. You can search online lyrics by title and artist, upload local lyric cache files for conversion, and manually mark timestamps in the browser when synced lyrics are unavailable.
 
 ## Features
 
