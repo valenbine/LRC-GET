@@ -646,6 +646,8 @@ button:disabled {
   inset: 26%;
   border-radius: 50%;
   background:
+    linear-gradient(90deg, transparent 0 47%, rgba(255, 255, 255, 0.44) 48% 51%, transparent 52% 100%),
+    radial-gradient(circle at 58% 64%, rgba(255, 255, 255, 0.92) 0 6%, transparent 6.6% 100%),
     radial-gradient(circle at center, rgba(3, 7, 18, 0.92) 0 9%, transparent 9.5% 100%),
     linear-gradient(135deg, rgba(139, 92, 246, 0.88), rgba(6, 182, 212, 0.82));
   box-shadow:

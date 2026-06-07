@@ -228,18 +228,32 @@ test('fetches a selected lrclib song id', async () => {
 test('finds kugou cover image', async () => {
   const originalFetch = globalThis.fetch
   try {
-    globalThis.fetch = async () => ({
-      ok: true,
-      json: async () => ({
-        data: {
-          lists: [{
-            SongName: '晴天',
-            SingerName: '周杰伦',
-            Image: 'http://imge.kugou.com/stdmusic/{size}/cover.jpg'
-          }]
+    globalThis.fetch = async (url, options = {}) => {
+      if (String(url).includes('itunes.apple.com')) {
+        return { ok: true, json: async () => ({ results: [] }) }
+      }
+      if (String(url).includes('smartbox_new.fcg')) {
+        return { ok: true, json: async () => ({ data: { song: { itemlist: [] } } }) }
+      }
+      if (String(url).includes('song_search_v2')) {
+        return {
+          ok: true,
+          json: async () => ({
+            data: {
+              lists: [{
+                SongName: '晴天',
+                SingerName: '周杰伦',
+                Image: 'http://imge.kugou.com/stdmusic/{size}/cover.jpg'
+              }]
+            }
+          })
         }
-      })
-    })
+      }
+      if (options.method === 'HEAD') {
+        return { ok: true, status: 200, headers: new Map([['content-type', 'image/jpeg']]) }
+      }
+      return { ok: false, json: async () => ({}) }
+    }
 
     const coverUrl = await searchKugouCover({ title: '晴天', artist: '周杰伦' })
 
