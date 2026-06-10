@@ -75,3 +75,18 @@ Agent 在任务执行过程中发现的条目应遵循以下格式：
   - 项目作者展示为 `猫仙森MR CAT`。
   - 联系邮箱展示为 `valenbine@163.com`。
   - GitHub 仓库链接展示为 `https://github.com/valenbine/LRC-GET`。
+
+[上下文压缩前归档]
+- Date: 2026-06-09
+- Context: 用户要求每次压缩上下文之前归档现有上下文
+- Instructions:
+  - 每次进行上下文压缩前，先将当前关键上下文、已完成事项、未完成事项、重要决策、阻塞点和相关文件路径归档到项目记忆或适合的项目文档中。
+
+[浏览器端测试环境]
+- Date: 2026-06-09
+- Context: Agent 在执行深度测试时发现
+- Category: 测试方法
+- Instructions:
+  - 浏览器端 E2E 可使用全局 Playwright：`npm install -g playwright`，并通过 `NODE_PATH=/usr/local/lib/node_modules` 让 Node 脚本加载全局包。
+  - 首次使用需执行 `playwright install chromium` 下载 Chromium。
+  - 当前环境运行 Chromium 需要安装系统库：`libglib2.0-0 libnss3 libnspr4 libdbus-1-3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libatspi2.0-0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2 libpango-1.0-0 libcairo2`。

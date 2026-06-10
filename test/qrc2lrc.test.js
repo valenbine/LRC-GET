@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { decryptQrc, parseQrcText, parseQrcXml, toLrc } from '../src/qrc2lrc.js'
 import { fetchQqMusicLyricsById, findBestTimedQqMusicLyrics } from '../src/qqmusic-api.js'
 import { fetchNeteaseLyricsById, inspectNeteaseLyrics } from '../src/netease-api.js'
@@ -54,8 +54,10 @@ test('decrypts qrc sample with binary wrapper bytes', () => {
   assert.match(xml, /QQ音乐动态歌词/)
 })
 
-test('decrypts qq music pc local qm qrc sample', () => {
-  const decrypted = decryptQrc(readFileSync('郑润泽 - 12.31.qrc'))
+const localQrcSample = '郑润泽 - 12.31.qrc'
+
+test('decrypts qq music pc local qm qrc sample', { skip: !existsSync(localQrcSample) }, () => {
+  const decrypted = decryptQrc(readFileSync(localQrcSample))
   const lines = parseQrcXml(decrypted)
   const lrc = toLrc(lines)
 

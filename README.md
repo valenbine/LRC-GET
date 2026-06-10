@@ -187,11 +187,21 @@ const lrc = toLrc(lines)
 npm run check
 node --check public/app.js
 node --check src/server.js
+node --check test/qrc2lrc.test.js
 node --test --test-name-pattern "finds kugou cover image"
 npm test
 ```
 
-`npm test` 包含 PC 本地 QRC 样本测试。样本文件缺失时，该测试会因 `ENOENT` 失败。
+`npm test` 包含 PC 本地 QRC 样本测试。样本文件缺失时，该用例会自动跳过，避免干净环境误报失败。
+
+浏览器端 E2E 可使用 Playwright 手动执行。当前仓库不把 Playwright 作为运行时依赖；如需复测 Web 交互，可全局安装并运行 Chromium：
+
+```bash
+npm install -g playwright
+playwright install chromium
+```
+
+当前已验证的浏览器流程包括：搜索 `晴天 / 周杰伦`、选择在线候选、转换 LRC、歌词渲染、移动端布局、作者卡、迷你播放器和歌词时间戳标注基础交互。
 
 ## 部署
 

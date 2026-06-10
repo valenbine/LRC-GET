@@ -187,11 +187,21 @@ The referenced projects remain owned by their original authors. Service API avai
 npm run check
 node --check public/app.js
 node --check src/server.js
+node --check test/qrc2lrc.test.js
 node --test --test-name-pattern "finds kugou cover image"
 npm test
 ```
 
-`npm test` includes a PC local QRC sample test. If the sample file is absent, that specific test will fail with `ENOENT`.
+`npm test` includes a PC local QRC sample test. If the sample file is absent, that case is skipped automatically to keep clean environments green.
+
+Browser E2E checks can be run manually with Playwright. Playwright is not a runtime dependency of this repository; install it globally when browser interaction needs to be verified:
+
+```bash
+npm install -g playwright
+playwright install chromium
+```
+
+The verified browser flow covers searching `晴天 / 周杰伦`, selecting an online candidate, converting to LRC, lyric rendering, mobile layout, author card, mini player, and the basic manual timestamp marking interaction.
 
 ## Deployment
 
